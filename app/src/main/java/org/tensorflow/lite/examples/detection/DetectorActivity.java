@@ -16,6 +16,7 @@
 
 package org.tensorflow.lite.examples.detection;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
@@ -210,6 +211,9 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                 canvas.drawRect(location, paint);
 
                 class_name = result.getTitle(); // 클래스 가져오기
+//                Intent intent = new Intent(getApplicationContext(), CameraActivity.class);
+//                intent.putExtra("class_name",class_name);
+//                startActivity(intent);
                 cropToFrameTransform.mapRect(location);
 
                 result.setLocation(location);
@@ -226,9 +230,9 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                 new Runnable() {
                   @Override
                   public void run() {
-                    showFrameInfo(previewWidth + "x" + previewHeight);
-                    showCropInfo(cropCopyBitmap.getWidth() + "x" + cropCopyBitmap.getHeight());
-                    showInference(lastProcessingTimeMs + "ms");
+//                    showFrameInfo(previewWidth + "x" + previewHeight);
+//                    showCropInfo(cropCopyBitmap.getWidth() + "x" + cropCopyBitmap.getHeight());
+//                    showInference(lastProcessingTimeMs + "ms");
 
                   }
                 });
