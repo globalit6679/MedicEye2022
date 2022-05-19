@@ -29,6 +29,7 @@ import android.media.ImageReader.OnImageAvailableListener;
 import android.os.SystemClock;
 import android.util.Size;
 import android.util.TypedValue;
+import android.widget.Button;
 import android.widget.Toast;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -82,8 +83,12 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
 
   private BorderedText borderedText;
 
+  //수정
+  private String class_name = "";
+
   @Override
   public void onPreviewSizeChosen(final Size size, final int rotation) {
+
     final float textSizePx =
         TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP, TEXT_SIZE_DIP, getResources().getDisplayMetrics());
@@ -147,6 +152,7 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
     tracker.setFrameConfiguration(previewWidth, previewHeight, sensorOrientation);
   }
 
+
   @Override
   protected void processImage() {
     ++timestamp;
@@ -203,6 +209,7 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
               if (location != null && result.getConfidence() >= minimumConfidence) {
                 canvas.drawRect(location, paint);
 
+                class_name = result.getTitle(); // 클래스 가져오기
                 cropToFrameTransform.mapRect(location);
 
                 result.setLocation(location);
@@ -223,17 +230,6 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                     showCropInfo(cropCopyBitmap.getWidth() + "x" + cropCopyBitmap.getHeight());
                     showInference(lastProcessingTimeMs + "ms");
 
-//                    if (location != null && result.getConfidence() >= minimumConfidence && result.getTitle().equals(serch_product)) { //이거다
-//                      canvas.drawRect(location, paint);
-//
-//                      class_name = result.getTitle(); //클래스 가져오기
-//                      parsing = result.getLocation().toString();
-//
-//
-//                      cropToFrameTransform.mapRect(location);
-//                      result.setLocation(location);
-//                      mappedRecognitions.add(result);
-//                    }
                   }
                 });
           }

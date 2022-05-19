@@ -1,27 +1,19 @@
 package org.tensorflow.lite.examples.detection;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.speech.RecognitionListener;
-import android.speech.RecognizerIntent;
-import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.Locale;
 
-public class DetectedActivity extends AppCompatActivity implements TextToSpeech.OnInitListener{
+public class SpeakActivity extends AppCompatActivity implements TextToSpeech.OnInitListener{
 
     ImageButton doseButton, cautionButton, homeButton;
     ImageView imageView;
@@ -31,7 +23,8 @@ public class DetectedActivity extends AppCompatActivity implements TextToSpeech.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detected);
+        setContentView(R.layout.activity_speak);
+
 
         tts = new TextToSpeech(this, this);
 
@@ -40,10 +33,6 @@ public class DetectedActivity extends AppCompatActivity implements TextToSpeech.
         homeButton = (ImageButton) findViewById(R.id.homeButton);
         imageView = (ImageView) findViewById(R.id.medicImage);
 
-//        Intent intent = getIntent();
-//        class_name = intent.getStringExtra("class_name");
-//
-//        Toast.makeText(getApplicationContext(), class_name+"의 정보를 가져옵니다...", Toast.LENGTH_SHORT).show();
 
         imageView.setVisibility(View.INVISIBLE);
 
