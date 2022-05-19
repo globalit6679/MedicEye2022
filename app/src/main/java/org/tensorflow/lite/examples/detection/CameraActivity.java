@@ -122,8 +122,8 @@ public abstract class CameraActivity extends AppCompatActivity
     capture_Button.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Toast.makeText(getApplicationContext(), "클릭됨", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getApplicationContext(), DetectedActivity.class); //search activity로 가는 거는 되는데 detected activity로 가는 거는 안 됨
+//        Toast.makeText(getApplicationContext(), "클릭됨", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(), DetectedActivity.class);
         intent.putExtra("class_name", "베아제"); //class명 가져오기
         startActivity(intent);
       }

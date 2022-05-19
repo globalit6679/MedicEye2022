@@ -7,6 +7,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -38,14 +39,20 @@ public class DetectedActivity extends AppCompatActivity implements TextToSpeech.
         doseButton = (ImageButton) findViewById(R.id.doseButton);
         cautionButton = (ImageButton) findViewById(R.id.cautionButton);
         homeButton = (ImageButton) findViewById(R.id.homeButton);
-        imageView = (ImageView) findViewById(R.id.medicImage);
+        imageView = (ImageView) findViewById(R.id.imageView2);
 
-//        Intent intent = getIntent();
-//        class_name = intent.getStringExtra("class_name");
-//
-//        Toast.makeText(getApplicationContext(), class_name+"의 정보를 가져옵니다...", Toast.LENGTH_SHORT).show();
+        Intent intent = getIntent();
+        class_name = intent.getStringExtra("class_name");
 
+        Toast.makeText(getApplicationContext(), class_name+"의 정보를 가져옵니다...", Toast.LENGTH_SHORT).show();
         imageView.setVisibility(View.INVISIBLE);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                imageView.setVisibility(View.VISIBLE);
+            }
+        }, 3000); //3초 후에 VISIBLE
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +62,8 @@ public class DetectedActivity extends AppCompatActivity implements TextToSpeech.
             }
         });
 
+
+        //베아제 껄로 바꾸기!!!
         doseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,7 +77,6 @@ public class DetectedActivity extends AppCompatActivity implements TextToSpeech.
                 speak("복용 후에 속, 구토, 발진 증상이 있는 경우, 복용을 즉각 중지하고 의사, 약사와 상의해주세요");
             }
         });
-
 
     }
 
