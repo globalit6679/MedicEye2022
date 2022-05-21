@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "80876599747",
+    "firebase_url": "https://medic-eye-default-rtdb.firebaseio.com",
+    "project_id": "medic-eye",
+    "storage_bucket": "medic-eye.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:80876599747:android:d895b026be3e3100e9e576",
+        "android_client_info": {
+          "package_name": "org.tensorflow.lite.examples.detection"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "80876599747-nucr1msp19dgr2v2pj15n6c9krceag78.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.tensorflow.lite.examples.detection",
+            "certificate_hash": "0dbbb02442fceaf525957db9c8d3adea6f328004"
+          }
+        },
+        {
+          "client_id": "80876599747-hvgb20kaan148qh0gtj38pnem8mvvic3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBM-oyxHw_eCLECyjSaYKdSBqlSsTkMa2Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "80876599747-hvgb20kaan148qh0gtj38pnem8mvvic3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
