@@ -184,8 +184,9 @@ public class SearchActivity extends AppCompatActivity implements TextToSpeech.On
             String input = searchInput.getText().toString();
             //tts로 input을 검색합니다라고 알리기
             speak(input+"을 검색합니다");
-            speak_add("종합감기약으로 콧물, 코 막힘, 기침, 발열 등 감기 증상의 완화에 필요한 의약품입니다.");
-            imageView.setVisibility(View.VISIBLE);
+//            speak_add("종합감기약으로 콧물, 코 막힘, 기침, 발열 등 감기 증상의 완화에 필요한 의약품입니다.");
+//            imageView.setVisibility(View.VISIBLE);
+            imageView.setImageResource(R.);
         }
 
         @Override
