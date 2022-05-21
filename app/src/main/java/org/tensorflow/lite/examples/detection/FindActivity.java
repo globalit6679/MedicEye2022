@@ -74,8 +74,7 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
             public void onClick(View view) {
                 String input = searchInput.getText().toString();
                 //tts로 input을 검색합니다라고 알리기
-                speak(input + "을 검색합니다");
-                imageView.setVisibility(View.INVISIBLE);
+//                imageView.setVisibility(View.INVISIBLE);
                 if (input == "베아제") {
                     imageView.setImageResource(R.drawable.begase);
                     imageView.setVisibility(View.VISIBLE);
@@ -89,6 +88,8 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
                     imageView.setVisibility(View.VISIBLE);
 
                 }
+                speak(input + "을 검색합니다");
+
 
 
 //                speak_add("종합감기약으로 콧물, 코 막힘, 기침, 발열 등 감기 증상의 완화에 필요한 의약품입니다.");
