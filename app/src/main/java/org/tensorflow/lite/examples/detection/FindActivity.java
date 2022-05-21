@@ -75,21 +75,28 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
                 String input = searchInput.getText().toString();
                 //tts로 input을 검색합니다라고 알리기
 //                imageView.setVisibility(View.INVISIBLE);
-                if (input == "베아제") {
-                    imageView.setImageResource(R.drawable.begase);
+//                imageView.setImageResource(R.drawable.gold);
+//                imageView.setVisibility(View.VISIBLE);
+
+                speak(input + "을 검색합니다");
+
+
+                if (input.equals("베아제")) {
+                    imageView.setImageResource(R.drawable.begase_image);
                     imageView.setVisibility(View.VISIBLE);
 
-                } else if (input == "타이레놀500" || input == "타이레놀 500") {
-                    imageView.setImageResource(R.drawable.tylenol500);
-                    imageView.setVisibility(View.VISIBLE);
-
-                } else if (input == "훼스탈 골드" || input == "훼스탈골드") {
-                    imageView.setImageResource(R.drawable.gold);
+                } else if (input.equals("타이레놀500") || input.equals("타이레놀 500")) {
+                    imageView.setImageResource(R.drawable.tylenol500_image);
                     imageView.setVisibility(View.VISIBLE);
 
                 }
-                speak(input + "을 검색합니다");
+                else if (input.equals("훼스탈 골드") || input.equals("훼스탈골드")) {
+                    imageView.setImageResource(R.drawable.gold_image);
+                    imageView.setVisibility(View.VISIBLE);
 
+                } else {
+                    Toast.makeText(getApplicationContext(), "아직 지원되지 않는 상품입니다.", Toast.LENGTH_SHORT).show();
+                }
 
 
 //                speak_add("종합감기약으로 콧물, 코 막힘, 기침, 발열 등 감기 증상의 완화에 필요한 의약품입니다.");
@@ -202,8 +209,8 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
 //            speak_add("종합감기약으로 콧물, 코 막힘, 기침, 발열 등 감기 증상의 완화에 필요한 의약품입니다.");
 //            imageView.setVisibility(View.VISIBLE);
             if (input == "베아제" || input == "배아재" || input == "배아제") {
-                imageView.setImageResource(R.drawable.begase);
-                imageView.setVisibility(View.VISIBLE);
+//                imageView.setImageResource(R.drawable.begase);
+//                imageView.setVisibility(View.VISIBLE);
             }
         }
 
@@ -246,18 +253,10 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
     }
 
     private void speak_add(String message) {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             tts.speak(message, TextToSpeech.QUEUE_ADD, null, null);
         }
     }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        if (tts != null){
-            tts.stop();
-            tts.shutdown();
-        }
-    }
 }
+//    @Override
+//  
