@@ -52,7 +52,7 @@
 
     <Button
         android:id="@+id/capture_Button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:text="인식" />
