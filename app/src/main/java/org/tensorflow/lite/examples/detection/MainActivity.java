@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         searchButton = (ImageButton) findViewById(R.id.searchButton);
 
         Intent cameraIntent = new Intent(getApplicationContext(), DetectorActivity.class);
-        Intent searchIntent = new Intent(getApplicationContext(), SearchActivity.class);
+        Intent searchIntent = new Intent(getApplicationContext(), FindActivity.class);
 
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override

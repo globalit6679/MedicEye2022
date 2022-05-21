@@ -17,14 +17,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.ObjectDetection">
         <activity
+            android:name=".FindActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetectorActivity"
             android:label="@string/tfe_od_app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SearchActivity"
+            android:name=".DetectedActivity"
             android:exported="false" />
         <activity
-            android:name=".DetectedActivity"
+            android:name=".SearchActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -35,7 +38,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
