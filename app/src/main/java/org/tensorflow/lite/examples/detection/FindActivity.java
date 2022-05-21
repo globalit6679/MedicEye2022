@@ -32,6 +32,7 @@ import java.util.Locale;
 
 public class FindActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
+    // 데이터랑 HashTable 추가하면 끝
     ImageButton searchButton, micButton, doseButton, cautionButton, homeButton;
     EditText searchInput;
     ImageView imageView;
