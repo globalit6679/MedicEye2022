@@ -44,11 +44,7 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
 //    FirebaseDatabase firebaseDatabase;
     Database_SQL database_sql;
     String eng_name = "";
-
-    String cation = "";
-    String dose = "";
-    String info = "";
-
+    String kor_name = "";
     String input = "";
 
     @Override
@@ -103,22 +99,29 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
 //                searchInput.setText("");
 
                 if (input.equals("베아제")) {
+                    kor_name = "베아제";
                     imageView.setImageResource(R.drawable.begase_image);
                     imageView.setVisibility(View.VISIBLE);
 
                 } else if (input.equals("타이레놀500") || input.equals("타이레놀 500")) {
+                    kor_name = "타이레놀 500";
                     imageView.setImageResource(R.drawable.tylenol500_image);
                     imageView.setVisibility(View.VISIBLE);
 
                 } else if (input.equals("훼스탈 골드") || input.equals("훼스탈골드")) {
+                    kor_name = "훼스탈 골드";
                     imageView.setImageResource(R.drawable.gold_image);
                     imageView.setVisibility(View.VISIBLE);
 
+                } else if(input.equals("타이레놀콜드") || input.equals("타이레놀 콜드")){
+                    kor_name = "타이레놀 콜드";
+                    imageView.setImageResource(R.drawable.tylennol_cold_image);
+                    imageView.setVisibility(View.VISIBLE);
                 } else {
                     Toast.makeText(getApplicationContext(), "아직 지원되지 않는 상품입니다.", Toast.LENGTH_SHORT).show();
                 }
 
-                eng_name = HashTable_kortoeng(input);
+                eng_name = HashTable_kortoeng(kor_name);
                 readChip(eng_name);
 //                Toast.makeText(getApplicationContext(), info+"...", Toast.LENGTH_SHORT).show();
 //                speak_add("종합감기약으로 콧물, 코 막힘, 기침, 발열 등 감기 증상의 완화에 필요한 의약품입니다.");
@@ -164,6 +167,7 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
         matchTable.put("타이레놀 500","Tylenol_500");
         matchTable.put("타이레놀 콜드","Tylenol_Cold");
         matchTable.put("베아제","Begase");
+        matchTable.put("훼스탈 골드","gold");
 
 //        matchTable.put("진한초코칩쿠키","Dark_chocolate_chip_cookies");
 //        matchTable.put("콘초코플러스","Corn_Choco_Plus");
@@ -299,7 +303,7 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
 
 
-    public String readChip(String eng_name){ //서버 연동
+    public void readChip(String eng_name){ //서버 연동
 //        ArrayList<String> arrayList = new ArrayList<String>();
 //        database_sql.HashTable_kortoeng(searchInput)
 
@@ -307,7 +311,7 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Object value = snapshot.getValue(Object.class);
-                info = value.toString();
+                String info = value.toString();
                 speak_add(info+"를 위한 의약품입니다");
 //                Toast.makeText(getApplicationContext(), info+"", Toast.LENGTH_SHORT).show();
             }
@@ -318,10 +322,9 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
             }
         });
 //        Toast.makeText(getApplicationContext(), "info는"+info, Toast.LENGTH_SHORT).show();
-        return info;
     }
 
-    public String readChip2(String eng_name){ //서버 연동
+    public void readChip2(String eng_name){ //서버 연동
 //        ArrayList<String> arrayList = new ArrayList<String>();
 //        database_sql.HashTable_kortoeng(searchInput)
 
@@ -329,7 +332,7 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Object value = snapshot.getValue(Object.class);
-                dose = value.toString();
+                String dose = value.toString();
                 speak(dose);
 //                Toast.makeText(getApplicationContext(), dose+"", Toast.LENGTH_SHORT).show();
             }
@@ -341,10 +344,9 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
             }
         });
 
-        return dose;
     }
 
-    public String readChip3(String eng_name){ //서버 연동 //cation
+    public void readChip3(String eng_name){ //서버 연동 //cation
 //        ArrayList<String> arrayList = new ArrayList<String>();
 //        database_sql.HashTable_kortoeng(searchInput)
 
@@ -352,8 +354,8 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Object value = snapshot.getValue(Object.class);
-                String cation = value.toString();
-                speak(cation);
+                String caution = value.toString();
+                speak(caution);
 //                Toast.makeText(getApplicationContext(), cation+"", Toast.LENGTH_SHORT).show();
             }
 
@@ -363,8 +365,6 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
             }
         });
-
-        return cation;
 
     }
     
