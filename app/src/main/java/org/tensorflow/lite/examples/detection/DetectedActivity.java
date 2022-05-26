@@ -52,6 +52,7 @@ public class DetectedActivity extends AppCompatActivity implements TextToSpeech.
             public void run() {
                 imageView.setImageResource(R.drawable.begase_image);
                 imageView.setVisibility(View.VISIBLE);
+                speak("소화제로 소화불량, 식욕부진, 과식 등 소화불량으로 인한 증상 완화");
             }
         }, 3000); //3초 후에 VISIBLE
 
