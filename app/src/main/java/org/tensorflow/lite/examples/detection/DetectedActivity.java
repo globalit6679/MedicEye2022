@@ -43,18 +43,21 @@ public class DetectedActivity extends AppCompatActivity implements TextToSpeech.
 
         Intent intent = getIntent();
         class_name = intent.getStringExtra("class_name");
-
         Toast.makeText(getApplicationContext(), class_name+"의 정보를 가져옵니다...", Toast.LENGTH_SHORT).show();
+
         imageView.setVisibility(View.INVISIBLE);
+//        speak(class_name+"의 정보를 가져옵니다...");
 
         new Handler().postDelayed(new Runnable() {
+
             @Override
             public void run() {
                 imageView.setImageResource(R.drawable.begase_image);
                 imageView.setVisibility(View.VISIBLE);
-                speak("소화제로 소화불량, 식욕부진, 과식 등 소화불량으로 인한 증상 완화");
+                speak("해당 의약품은 "+class_name+"입니다");
+                speak_add("소화제로 소화불량, 식욕부진, 과식 등 소화불량으로 인한 증상 완화"+"를 위한 의약품입니다");
             }
-        }, 3000); //3초 후에 VISIBLE
+        }, 1500); //3초 후에 VISIBLE
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override

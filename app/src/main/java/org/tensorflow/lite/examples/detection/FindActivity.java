@@ -308,7 +308,7 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Object value = snapshot.getValue(Object.class);
                 info = value.toString();
-                speak_add(info);
+                speak_add(info+"를 위한 의약품입니다");
 //                Toast.makeText(getApplicationContext(), info+"", Toast.LENGTH_SHORT).show();
             }
 
