@@ -50,6 +50,7 @@ public class DetectedActivity extends AppCompatActivity implements TextToSpeech.
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                imageView.setImageResource(R.drawable.begase_image);
                 imageView.setVisibility(View.VISIBLE);
             }
         }, 3000); //3초 후에 VISIBLE
@@ -67,14 +68,14 @@ public class DetectedActivity extends AppCompatActivity implements TextToSpeech.
         doseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                speak("1회 3정 복용하세요");
+                speak("1회 1정, 1일 3회 식후에 복용하세요");
             }
         });
 
         cautionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                speak("복용 후에 속, 구토, 발진 증상이 있는 경우, 복용을 즉각 중지하고 의사, 약사와 상의해주세요");
+                speak("만 7세 이하 어린이, 돼지고기 알러지가 있는 경우 복용하지 마세요");
             }
         });
 
