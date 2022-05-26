@@ -163,6 +163,7 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
         Hashtable<String, String> matchTable = new Hashtable<String, String>();
         matchTable.put("타이레놀 500","Tylenol_500");
         matchTable.put("타이레놀 콜드","Tylenol_Cold");
+        matchTable.put("베아제","Begase");
 
 //        matchTable.put("진한초코칩쿠키","Dark_chocolate_chip_cookies");
 //        matchTable.put("콘초코플러스","Corn_Choco_Plus");
@@ -312,7 +313,9 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) { }
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getApplicationContext(), "아직 지원되지 않는 상품입니다", Toast.LENGTH_SHORT).show();
+            }
         });
 //        Toast.makeText(getApplicationContext(), "info는"+info, Toast.LENGTH_SHORT).show();
         return info;
@@ -332,7 +335,10 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) { }
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getApplicationContext(), "아직 지원되지 않는 상품입니다", Toast.LENGTH_SHORT).show();
+
+            }
         });
 
         return dose;
@@ -352,7 +358,10 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) { }
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getApplicationContext(), "아직 지원되지 않는 상품입니다", Toast.LENGTH_SHORT).show();
+
+            }
         });
 
         return cation;
