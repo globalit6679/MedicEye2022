@@ -32,7 +32,6 @@ import java.util.Locale;
 
 public class FindActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
-    // 데이터랑 HashTable 추가하면 끝
     ImageButton searchButton, micButton, doseButton, cautionButton, homeButton;
     EditText searchInput;
     ImageView imageView;
@@ -46,6 +45,7 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
     String eng_name = "";
     String kor_name = "";
     String input = "";
+    Boolean isData = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,30 +99,40 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
 //                searchInput.setText("");
 
                 if (input.equals("베아제")) {
+                    isData = true;
+
                     kor_name = "베아제";
                     imageView.setImageResource(R.drawable.begase_image);
                     imageView.setVisibility(View.VISIBLE);
 
                 } else if (input.equals("타이레놀500") || input.equals("타이레놀 500")) {
+                    isData = true;
+
                     kor_name = "타이레놀 500";
                     imageView.setImageResource(R.drawable.tylenol500_image);
                     imageView.setVisibility(View.VISIBLE);
 
                 } else if (input.equals("훼스탈 골드") || input.equals("훼스탈골드")) {
+                    isData = true;
                     kor_name = "훼스탈 골드";
                     imageView.setImageResource(R.drawable.gold_image);
                     imageView.setVisibility(View.VISIBLE);
 
                 } else if(input.equals("타이레놀콜드") || input.equals("타이레놀 콜드")){
+                    isData = true;
                     kor_name = "타이레놀 콜드";
                     imageView.setImageResource(R.drawable.tylennol_cold_image);
                     imageView.setVisibility(View.VISIBLE);
                 } else {
+                    isData = false;
                     Toast.makeText(getApplicationContext(), "아직 지원되지 않는 상품입니다.", Toast.LENGTH_SHORT).show();
                 }
 
-                eng_name = HashTable_kortoeng(kor_name);
-                readChip(eng_name);
+                if(isData){
+                    eng_name = HashTable_kortoeng(kor_name);
+                    readChip(eng_name);
+                }
+
 //                Toast.makeText(getApplicationContext(), info+"...", Toast.LENGTH_SHORT).show();
 //                speak_add("종합감기약으로 콧물, 코 막힘, 기침, 발열 등 감기 증상의 완화에 필요한 의약품입니다.");
             }
@@ -339,7 +349,8 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getApplicationContext(), "아직 지원되지 않는 상품입니다", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "아직 지원되지 않는 상품입니다", Toast.LENGTH_SHORT).show();
+
 
             }
         });
