@@ -64,14 +64,15 @@
     <ImageButton
         android:contentDescription="복용량을 설명합니다"
         android:id="@+id/doseButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#A0C992"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/medicImage"
         app:layout_constraintVertical_bias="0.13999999"
+        android:background="#315e31"
         app:srcCompat="@drawable/one_button"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -81,9 +82,8 @@
         android:layout_height="wrap_content"
         android:text="복용량"
         android:importantForAccessibility="no"
-
         android:focusable="false"
-        android:textSize="40dp"
+        android:textSize="70dp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/doseButton"
         app:layout_constraintEnd_toEndOf="@+id/doseButton"
@@ -92,10 +92,11 @@
 
     <ImageButton
         android:contentDescription="주의사항을 설명합니다"
+        android:layout_marginTop="40dp"
         android:id="@+id/cautionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#A0C992"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="#315e31"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,11 +108,10 @@
     <TextView
         android:id="@+id/textView10"
         android:importantForAccessibility="no"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="주의사항"
-        android:textSize="40dp"
+        android:textSize="70dp"
         android:focusable="false"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/cautionButton"
