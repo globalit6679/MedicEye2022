@@ -310,9 +310,6 @@ public class FindActivity extends AppCompatActivity implements TextToSpeech.OnIn
         }
     };
 
-
-
-
     public void readChip(String eng_name){ //서버 연동
 //        ArrayList<String> arrayList = new ArrayList<String>();
 //        database_sql.HashTable_kortoeng(searchInput)
