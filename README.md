@@ -1,137 +1,75 @@
-# TensorFlow Lite Object Detection Android Demo
+# 💊 Medic Eyelet (Medic Eye)
 
-### Overview
+> **시력취약계층을 위한 의약품(편의점 상비약) 정보 안내 애플리케이션**
 
-This is a camera app that continuously detects the objects (bounding boxes and
-classes) in the frames seen by your device's back camera, using a quantized
-[MobileNet SSD](https://github.com/tensorflow/models/tree/master/research/object_detection)
-model trained on the [COCO dataset](http://cocodataset.org/). These instructions
-walk you through building and running the demo on an Android device.
+![Project Banner](https://via.placeholder.com/1000x300?text=Medic+Eyelet)
 
-The model files are downloaded via Gradle scripts when you build and run. You
-don't need to do any steps to download TFLite models into the project
-explicitly.
+## 📖 Project Overview (프로젝트 개요)
 
-Application can run either on device or emulator.
+**Medic Eyelet**은 시력취약계층이 편의점 상비약과 같은 의약품을 안전하게 복용할 수 있도록 돕는 안드로이드 애플리케이션입니다. 스마트폰 카메라를 통해 의약품을 촬영하면 어떤 약인지 인식하여 알려주고, 복용량 및 주의사항과 같은 필수 정보를 음성으로 제공하여 오남용 사고를 예방하는 것을 목표로 합니다.
 
-<!-- TODO(b/124116863): Add app screenshot. -->
+### 🛑 Background (개발 배경)
+* **의약품 구분의 어려움:** 상비약들의 모양이 비슷하여 시각장애인이 구분하기 어렵습니다.
+* **정보 접근성 부족:** 편의점 등에서 구매 시 정보를 알려주는 사람이 없어 복용량이나 주의사항을 파악하기 힘듭니다.
+* **점자 표기 미비:** 시중 판매 의약품 중 점자 표기가 된 제품은 소수에 불과하며, 표기법 또한 통일되지 않아 위험합니다.
 
-## Build the demo using Android Studio
+---
 
-### Prerequisites
+## 🛠 Tech Stack (기술 스택)
 
-*   If you don't have already, install
-    **[Android Studio](https://developer.android.com/studio/index.html)**,
-    following the instructions on the website.
+### Mobile & AI
+![Android](https://img.shields.io/badge/Android-Studio-3DDC84?logo=android) ![TensorFlow](https://img.shields.io/badge/TensorFlow-Lite-FF6F00?logo=tensorflow) ![OpenCV](https://img.shields.io/badge/LabelImg-PascalVOC-5C3EE8)
 
-*   You need an Android device and Android development environment with minimum
-    API 21.
+### Backend & Database
+![Firebase](https://img.shields.io/badge/Firebase-Realtime_DB-FFCA28?logo=firebase)
 
-*   Android Studio 4.2 or above.
+### Voice Interface
+![TTS](https://img.shields.io/badge/Android-TextToSpeech-3DDC84) ![STT](https://img.shields.io/badge/Android-SpeechToText-3DDC84)
 
-### Building
+---
 
-*   Open Android Studio, and from the Welcome screen, select Open an existing
-    Android Studio project.
+## ⚙️ Key Features (핵심 기능)
 
-*   From the Open File or Project window that appears, navigate to and select
-    the tensorflow-lite/examples/object_detection/android directory from
-    wherever you cloned the TensorFlow Lite sample GitHub repo. Click OK.
+### 1. AI 기반 의약품 인식 (Object Detection)
+* **기능:** 스마트폰 카메라로 의약품을 촬영하면 해당 의약품이 무엇인지 식별합니다.
+* **기술:** TensorFlow Object Detection API와 MobileNet 모델을 사용하여 학습 및 구현되었습니다.
+* **데이터:** LabelImg를 사용하여 Pascal VOC 형태로 데이터를 레이블링하고 학습시켰습니다.
 
-*   If it asks you to do a Gradle Sync, click OK.
+### 2. 음성 인터페이스 (Voice Interface)
+* **음성 검색 (STT):** `RecognitionListener`를 활용하여 사용자가 음성으로 의약품 이름을 검색할 수 있습니다.
+* **음성 안내 (TTS):** `TextToSpeech` 기능을 통해 검색 결과, 복용량, 주의사항 등의 텍스트 정보를 음성으로 읽어줍니다.
+* **접근성 (Accessibility):** `Content Description`을 활용한 대체 텍스트를 제공하여 위젯 정보 등을 음성으로 안내합니다.
 
-*   You may also need to install various platforms and tools, if you get errors
-    like "Failed to find target with hash string 'android-21'" and similar.
-    Click the `Run` button (the green arrow) or select `Run > Run 'android'`
-    from the top menu. You may need to rebuild the project using `Build >
-    Rebuild` Project.
+### 3. 의약품 정보 제공 (Drug Information)
+* **정보 제공:** 인식되거나 검색된 의약품의 '복용량'과 '주의사항' 정보를 제공합니다.
+* **DB 연동:** Firebase Realtime Database를 구축하여 의약품 데이터(사진, 복용법, 주의사항)를 실시간으로 요청하고 받아옵니다.
 
-*   If it asks you to use Instant Run, click Proceed Without Instant Run.
+---
 
-*   Also, you need to have an Android device plugged in with developer options
-    enabled at this point. See
-    **[here](https://developer.android.com/studio/run/device)** for more details
-    on setting up developer devices.
+## 📱 Implementation Details (구현 상세)
 
-#### Switch between inference solutions (Task library vs TFLite Interpreter)
+### 시스템 차별점 (vs 유사 앱)
+| 구분 | Medic Eye (본 프로젝트) | HIRA (심평원 앱) | 설리반+ |
+|:---:|:---|:---|:---|
+| **인식 방식** | **Object Detection** (카메라 촬영) | 바코드 인식 (시각장애인 사용 난해) | 사물 인식 기능 제공 |
+| **음성 지원** | **TTS, STT, 대체텍스트** 모두 지원 | 음성 인터페이스 미지원 | 음성 인터페이스 지원 |
+| **정보 제공** | **복용량, 주의사항** 등 상세 정보 제공 | 복용량, 주의사항 제공 | 구체적 의약품 정보 미제공 |
 
-This object detection Android reference app demonstrates two implementation
-solutions:
+### 시연 프로세스
+1.  **인식:** 카메라로 의약품 인식 후 버튼을 눌러 검색.
+2.  **검색:** 텍스트 입력 또는 음성 검색 기능을 통해 의약품 탐색.
+3.  **정보 확인:** '복용량', '주의사항' 버튼을 누르면 해당 내용을 음성으로 안내.
 
-(1)
-[`lib_task_api`](https://github.com/tensorflow/examples/tree/master/lite/examples/nl_classification/android/lib_task_api)
-that leverages the out-of-box API from the
-[TensorFlow Lite Task Library](https://www.tensorflow.org/lite/inference_with_metadata/task_library/object_detector);
+---
 
-(2)
-[`lib_interpreter`](https://github.com/tensorflow/examples/tree/master/lite/examples/text_classification/android/lib_interpreter)
-that creates the custom inference pipleline using the
-[TensorFlow Lite Interpreter Java API](https://www.tensorflow.org/lite/guide/inference#load_and_run_a_model_in_java).
+## 🔮 Future Plans (향후 계획)
+* 아침, 점심, 저녁 약을 구분하여 안내하는 기능을 추가할 예정입니다.
+* 데이터베이스 업데이트를 통해 지원하는 의약품의 종류를 늘릴 계획입니다.
 
-The [`build.gradle`](app/build.gradle) inside `app` folder shows how to change
-`flavorDimensions "tfliteInference"` to switch between the two solutions.
+---
 
-Inside **Android Studio**, you can change the build variant to whichever one you
-want to build and run—just go to `Build > Select Build Variant` and select one
-from the drop-down menu. See
-[configure product flavors in Android Studio](https://developer.android.com/studio/build/build-variants#product-flavors)
-for more details.
+## 👥 Team Members (팀원)
+* **이효원** (20190753)
+* **임소연** (20190754)
 
-For gradle CLI, running `./gradlew build` can create APKs for both solutions
-under `app/build/outputs/apk`.
-
-*Note: If you simply want the out-of-box API to run the app, we recommend
-`lib_task_api` for inference. If you want to customize your own models and
-control the detail of inputs and outputs, it might be easier to adapt your model
-inputs and outputs by using `lib_interpreter`.*
-
-### Model used
-
-Downloading, extraction and placing it in assets folder has been managed
-automatically by download.gradle.
-
-If you explicitly want to download the model, you can download from
-**[here](http://storage.googleapis.com/download.tensorflow.org/models/tflite/coco_ssd_mobilenet_v1_1.0_quant_2018_06_29.zip)**.
-Extract the zip to get the .tflite and label file.
-
-### Custom model used
-
-This example shows you how to perform TensorFlow Lite object detection using a
-custom model. * Clone the TensorFlow models GitHub repository to your computer.
-`git clone https://github.com/tensorflow/models/` * Build and install this
-repository. `cd models/research python3 setup.py build && python3 setup.py
-install` * Download the MobileNet SSD trained on
-**[Open Images v4](https://storage.googleapis.com/openimages/web/factsfigures_v4.html)**
-**[here](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf1_detection_zoo.md)**.
-Extract the pretrained TensorFlow model files. * Go to `models/research`
-directory and execute this code to get the frozen TensorFlow Lite graph.
-`python3 object_detection/export_tflite_ssd_graph.py \ --pipeline_config_path
-object_detection/samples/configs/ssd_mobilenet_v2_oid_v4.config \
---trained_checkpoint_prefix <directory with
-ssd_mobilenet_v2_oid_v4_2018_12_12>/model.ckpt \ --output_directory
-exported_model` * Convert the frozen graph to the TFLite model. `tflite_convert
-\ --input_shape=1,300,300,3 \ --input_arrays=normalized_input_image_tensor \
---output_arrays=TFLite_Detection_PostProcess,TFLite_Detection_PostProcess:1,TFLite_Detection_PostProcess:2,TFLite_Detection_PostProcess:3
-\ --allow_custom_ops \ --graph_def_file=exported_model/tflite_graph.pb \
---output_file=<directory with the TensorFlow examples
-repository>/lite/examples/object_detection/android/app/src/main/assets/detect.tflite`
-`input_shape=1,300,300,3` because the pretrained model works only with that
-input shape.
-
-`allow_custom_ops` is necessary to allow TFLite_Detection_PostProcess operation.
-
-`input_arrays` and `output_arrays` can be drawn from the visualized graph of the
-example detection model. `bazel run //tensorflow/lite/tools:visualize \
-"<directory with the TensorFlow examples
-repository>/lite/examples/object_detection/android/app/src/main/assets/detect.tflite"
-\ detect.html`
-
-*   Get `labelmap.txt` from the second column of
-    **[class-descriptions-boxable](https://storage.googleapis.com/openimages/2018_04/class-descriptions-boxable.csv)**.
-*   In `DetectorActivity.java` set `TF_OD_API_IS_QUANTIZED` to `false`.
-
-### Additional Note
-
-_Please do not delete the assets folder content_. If you explicitly deleted the
-files, then please choose *Build*->*Rebuild* from menu to re-download the
-deleted model files into assets folder.
+---
